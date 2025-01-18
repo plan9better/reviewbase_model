@@ -3,11 +3,7 @@ from pydantic import BaseModel
 import joblib
 from preprocessor import Preprocessor
 import os
-from dotenv import load_dotenv
 from datasets import load_dataset
-load_dotenv()
-
-model_path = os.getenv('model_path')
 
 app = FastAPI()
 
@@ -26,7 +22,7 @@ _ = preprocessor.train_preprocess(reviews_dirty)
 
 
 # Load the pre-trained model
-rfc = joblib.load(model_path)
+rfc = joblib.load("./models/model.pty")
 class Review(BaseModel):
     text: str
 
@@ -40,4 +36,4 @@ def predict(review: Review):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=13337)

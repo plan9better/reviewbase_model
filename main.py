@@ -9,15 +9,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
-from dotenv import load_dotenv
 
 if __name__ == "__main__":
-    load_dotenv()
 
-    n_estimators = int(os.getenv('randomforest_trees'))
+    n_estimators = 100
     print("Number of trees:", n_estimators)
-    model_path = os.getenv('model_path')
+    model_path = "./models/model.pty"
     print("Base model path:", model_path)
 
     # !huggingface-cli login
@@ -58,11 +55,3 @@ if __name__ == "__main__":
         print("Evaluating...")
         ev = Evaluator(rfc, X_test, y_test)
         print("Accuracy: ", ev.accuracy)
-
-    u_in = ""
-    while u_in != "exit":
-        u_in = input("Enter a review: ")
-        u_vector = preprocessor.preprocess(u_in)
-        u_pred = rfc.predict(u_vector)
-        print("Constructive" if u_pred[0] else "Not constructive")
-

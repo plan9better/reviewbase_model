@@ -1,7 +1,5 @@
 import re
 from sklearn.feature_extraction.text import TfidfVectorizer
-import os
-from dotenv import load_dotenv
 
 class Preprocessor:
     def __init__(self):
@@ -32,8 +30,7 @@ class Preprocessor:
         return text
 
     def _train_vectorize(self, reviews_normalized: list):
-        load_dotenv()
-        n_features = int(os.getenv('tf_idf_feature_count'))
+        n_features = 5000
 
         self.vectorizer = TfidfVectorizer(
             # These parameters control tokenization
