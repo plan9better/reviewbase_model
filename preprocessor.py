@@ -5,7 +5,6 @@ class Preprocessor:
     def __init__(self):
         pass
     def _normalize(self, text: str) -> str:
-        # Basic cleaning you mentioned
         text = text.lower()
         text = re.sub(r'[^\w\s]', '', text)
         text = ' '.join(text.split())  # Handle all white space
@@ -22,7 +21,6 @@ class Preprocessor:
             "you'd": "you would", "he's": "he is", "she's": "she is", "it's": "it is", 
             "we're": "we are", "they're": "they are", "that's": "that is", "there's": "there is", 
             "there're": "there are", "isnt": "is not",
-            # Add more based on your data
         }
         for abbr, expanded in abbreviations.items():
             text = text.replace(abbr, expanded)
@@ -33,7 +31,6 @@ class Preprocessor:
         n_features = 5000
 
         self.vectorizer = TfidfVectorizer(
-            # These parameters control tokenization
             token_pattern=r'(?u)\b\w\w+\b',  # Default pattern: matches words of 2+ chars
             lowercase=True,  # Converts text to lowercase before tokenizing
             strip_accents='unicode'  # Removes accents

@@ -32,7 +32,6 @@ if __name__ == "__main__":
     preprocessor = Preprocessor()
     vectors = preprocessor.train_preprocess(reviews_dirty)
 
-    # rename for clarity
     try:
         joblib.load(model_path)
         print("Model found at", model_path)
